@@ -81,6 +81,8 @@ pub enum Arch {
     Powerpc64Le,
     #[serde(alias = "ppc64")]
     Powerpc64,
+    #[serde(alias = "riscv64")]
+    RiscV64,
     #[serde(alias = "i386", alias = "i686")]
     X86,
     #[serde(alias = "amd64")]
@@ -96,6 +98,7 @@ impl fmt::Display for Arch {
             Self::Armv7L => write!(f, "armv7l"),
             Self::Powerpc64Le => write!(f, "ppc64le"),
             Self::Powerpc64 => write!(f, "ppc64"),
+            Self::RiscV64 => write!(f, "riscv64"),
             Self::X86 => write!(f, "i686"),
             Self::X86_64 => write!(f, "x86_64"),
             Self::S390X => write!(f, "s390x"),
@@ -109,9 +112,12 @@ impl Arch {
     pub fn get_minimum_manylinux_minor(&self) -> Option<u16> {
         match self {
             // manylinux 2014
-            Self::Aarch64 | Self::Armv7L | Self::Powerpc64 | Self::Powerpc64Le | Self::S390X => {
-                Some(17)
-            }
+            Self::Aarch64
+            | Self::Armv7L
+            | Self::Powerpc64
+            | Self::Powerpc64Le
+            | Self::RiscV64
+            | Self::S390X => Some(17),
             // manylinux 1
             Self::X86 | Self::X86_64 => Some(5),
             // unsupported
