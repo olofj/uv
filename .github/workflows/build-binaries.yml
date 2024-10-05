@@ -454,6 +454,10 @@ jobs:
                 yum repolist
                 yum install -y gcc-riscv64-linux-gnu
             fi
+            if command -v apt-get &>/dev/null; then
+                sudo apt-get update
+                sudo apt-get install -y gcc-riscv64-linux-gnu
+            fi
       - uses: uraimo/run-on-arch-action@v2
         if: matrix.platform.arch != 'riscv64'
         name: Test wheel
