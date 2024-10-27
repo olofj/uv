@@ -161,6 +161,9 @@ impl From<&uv_platform_tags::Arch> for Arch {
             uv_platform_tags::Arch::S390X => Self(target_lexicon::Architecture::S390x),
             uv_platform_tags::Arch::Powerpc64 => Self(target_lexicon::Architecture::Powerpc64),
             uv_platform_tags::Arch::Powerpc64Le => Self(target_lexicon::Architecture::Powerpc64le),
+            uv_platform_tags::Arch::RiscV64 => Self(target_lexicon::Architecture::Riscv64(
+                target_lexicon::Riscv64Architecture::Riscv64gc,
+            )),
             uv_platform_tags::Arch::X86 => Self(target_lexicon::Architecture::X86_32(
                 target_lexicon::X86_32Architecture::I686,
             )),
